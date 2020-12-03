@@ -7,14 +7,14 @@ describe 'Pets Store' do
 
     context 'CRUD - Pets' do
 
-        it 'cadastro de pet'do
+        it 'Cadastro de pet'do
             body =  FactoryBot.attributes_for(:Pets).to_json
             resultado = pets.criar(body)
             expect(resultado.code).to eq(200)
             expect(resultado['status']).to eq('available')
         end
 
-        it 'atualizar cadastro de pet' do
+        it 'Atualizar cadastro de pet' do
             bodyCadastro = FactoryBot.attributes_for(:Pets).to_json
             resultCadastro = pets.criar(bodyCadastro)
             id = resultCadastro['id']
@@ -26,15 +26,24 @@ describe 'Pets Store' do
             expect(resultado['status']).to eq('available')
         end
 
-        it 'deletar cadastro de pet' do
+        it 'Deletar cadastro de pet' do
             bodyCadastro = FactoryBot.attributes_for(:Pets).to_json
             resultCadastro = pets.criar(bodyCadastro)
             id = resultCadastro['id']
 
             resultado = pets.deletar(id)
             expect(resultado.code).to eq(200)
-
         end
-    end
 
+        it 'Buscar todos os pets com status = available' do
+            resultado = pets.buscar('available')
+            expect(resultado.code).to eq(200)
+           
+            for pet in resultado
+                status = pet['status']
+                expect(status).to eq('available')
+            end
+        end
+
+    end
 end

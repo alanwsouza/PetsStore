@@ -1,6 +1,9 @@
 require 'hi_httparty'
 require 'faker'
 require 'factory_bot'
+require 'dotenv'
+
+Dotenv.load('.env.qa')
 
 include HiHttparty::RequestsType
 

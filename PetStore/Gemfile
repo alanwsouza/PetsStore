@@ -4,6 +4,7 @@ source 'http://rubygems.org' do
         gem 'rspec'
         gem 'factory_bot'
         gem 'faker'
+        gem 'dotenv'
     end
 end
 
